@@ -1,0 +1,121 @@
+.noselect {                    /* Avoids text selection and highlighting */
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none;   /* Chrome/Safari/Opera */
+  -khtml-user-select: none;    /* Konqueror */
+  -moz-user-select: none;      /* Firefox */
+  -ms-user-select: none;       /* IE/Edge */
+  user-select: none;           /* non-prefixed version, currently
+                                  not supported by any browser */
+}
+
+html,body {
+	height: 100%;
+	background-color:#F3FAB6;
+	color:Navy;
+	font-family: Garamond, Baskerville, "Baskerville Old Face", "Hoefler Text", "Times New Roman", serif;
+}
+
+.icon {
+	margin-left:10px;
+}
+
+#iconContainer {
+	float: right;
+	padding-right:3px
+}
+
+#table {
+	height: 85vh;
+	padding: 0% 0% 0% 0%;
+	overflow-y: auto;
+	background-color: lightGreen;
+	border: 3px solid green
+}
+
+table {
+	border: 4px solid #005A31;	
+}
+
+thead {
+	background-color: Khaki
+}
+
+td th{
+	border: 1px solid black;
+}
+
+caption {
+	font-size:200%
+}
+
+.firstRow {
+	border-top: 4px solid #005A31;
+}
+
+.firstRowOfStop {
+	border-top: 2px solid blue;
+}
+
+#spinner {
+	visibility: hidden
+}
+
+#map {
+    width:100%;
+    height:50vh;
+}
+
+#cont {
+	font-size: 200%;
+	color: red;
+}
+
+.errorText {
+	color: red;
+	font-size:120%
+}
+
+#map {
+        margin-top:12%;
+        margin-bottom:12%;
+}
+
+span {
+	white-space: nowrap;
+}
+
+@media only screen and (max-width: 1600px) { /* Bootstrap lg */
+	
+}
+
+@media only screen and (max-width: 1199px) { /* Bootstrap md */
+	
+}
+
+@media only screen and (max-width: 991px) { /* Bootstrap sm */
+	#map {
+        margin-top:2%;
+        margin-bottom:2%;
+    }
+}
+
+@media only screen and (max-width: 767px) { /* Bootstrap xs */
+	body {
+	   font-size:100%;
+	}
+	h2 {
+	    font-size:200%;
+	}
+}
+
+@media only screen and (max-width: 360px) {
+	body {
+	   font-size:80%;
+	}
+	#table {
+	    height: 75vh;
+	}
+	h2 {
+	    font-size:150%;
+	}
+}
