@@ -26,13 +26,19 @@ $(document).ready(function(){
 	var busCodes = [701,702,704];
 	var edges = [];
 	
+	refresh();
+	/*
 	if (navigator.geolocation) {
 		refresh();
 	}
-	else showResult("Browser geolocation not available");
+	*/
+	
+	//else showResult("Browser geolocation not available");
     
 	function refresh() {
 		document.getElementById("spinner").style.visibility="visible";
+		geoSuccess();
+		/*
 		navigator.geolocation.getCurrentPosition(
 			geoSuccess, 
 			function (){
@@ -40,6 +46,7 @@ $(document).ready(function(){
 				document.getElementById("spinner").style.visibility="hidden";
 			}
 		);
+		*/
 	}
 	
 	function clearStopMarkers() {
@@ -68,10 +75,10 @@ $(document).ready(function(){
 	function geoSuccess(location){
 		if (edges.length>0) clearStopMarkers();
 		
-		var lat = location.coords.latitude;
-		var lon = location.coords.longitude;
-		//lat = 60.221873; // Test location
-		//lon = 24.941422;
+		//var lat = location.coords.latitude;
+		//var lon = location.coords.longitude;
+		var lat = 60.221873; // Test location
+		var lon = 24.941422;
 		map.setCenter({lat: lat, lng: lon}); 
 		userLocationMarker.setPosition({lat: lat, lng: lon});
 		var query = '{stopsByRadius(lat: '+lat+', lon: '+lon+', radius: '+distance+'){edges{node{distance stop{gtfsId name lat lon stoptimesWithoutPatterns(timeRange: '+timeRange+'){scheduledDeparture realtimeDeparture departureDelay realtime realtimeState serviceDay trip {tripHeadsign route{shortName longName type} alerts{alertDescriptionTextTranslations{text language}}}}}}}}}';
