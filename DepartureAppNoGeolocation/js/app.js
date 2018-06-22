@@ -26,7 +26,7 @@ $(document).ready(function(){
 	var busCodes = [701,702,704];
 	var edges = [];
 	
-	refresh();
+	setTimeout(refresh,0);
 	/*
 	if (navigator.geolocation) {
 		refresh();
