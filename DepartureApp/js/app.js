@@ -20,7 +20,7 @@ $(document).ready(function(){
 	var SECONDS_IN_HOUR = 60*60;
 	var SECONDS_IN_DAY = 24*60*60;
 	var distance = 1000;
-	var timeRange = SECONDS_IN_HOUR;
+	var timeRange = 59*60;
 	var currentTime;
 	var dataRefreshInterval = SECONDS_IN_MINUTE*1000;
 	var busCodes = [701,702,704];
@@ -287,6 +287,7 @@ $(document).ready(function(){
 	}
 	
 	function timeShown(seconds) {
+    if (seconds<0) seconds+=SECONDS_IN_HOUR;
 		var days = seconds/SECONDS_IN_DAY>>0;
 		seconds -= days*SECONDS_IN_DAY;
 		var hours = seconds/SECONDS_IN_HOUR>>0;
