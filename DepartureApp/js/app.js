@@ -27,7 +27,7 @@ $(document).ready(function(){
 	var edges = [];
 	
 	if (navigator.geolocation) {
-		refresh();
+		  setTimeout(refresh,0);
 	}
 	else showResult("Browser geolocation not available");
     
