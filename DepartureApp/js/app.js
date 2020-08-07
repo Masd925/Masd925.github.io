@@ -26,9 +26,15 @@ $(document).ready(function(){
 	var busCodes = [701,702,704];
 	var edges = [];
 	
-	if (navigator.geolocation) {
-		  setTimeout(refresh,0);
+	function refreshData () {
+    if (map===undefined) setTimeout(refreshData,1);
+    else refresh();
+  }
+
+  if (navigator.geolocation) {
+	    setTimeout(refreshData,0);
 	}
+
 	else showResult("Browser geolocation not available");
     
 	function refresh() {
@@ -70,8 +76,6 @@ $(document).ready(function(){
 		
 		var lat = location.coords.latitude;
 		var lon = location.coords.longitude;
-		//lat = 60.221873; // Test location
-		//lon = 24.941422;
 		map.setCenter({lat: lat, lng: lon}); 
 		userLocationMarker.setPosition({lat: lat, lng: lon});
 		var query = '{stopsByRadius(lat: '+lat+', lon: '+lon+', radius: '+distance+'){edges{node{distance stop{gtfsId name lat lon stoptimesWithoutPatterns(timeRange: '+timeRange+'){scheduledDeparture realtimeDeparture departureDelay realtime realtimeState serviceDay trip {tripHeadsign route{shortName longName type} alerts{alertDescriptionTextTranslations{text language}}}}}}}}}';
@@ -228,7 +232,6 @@ $(document).ready(function(){
 			
 		}
 		
-		// map.setCenter(userLocationMarker.getPosition()); 
 		
 		function addRow(time, stopName, distance, shortName, longName) {
 			var tr = document.createElement("tr");
@@ -294,7 +297,6 @@ $(document).ready(function(){
 		seconds -= hours*SECONDS_IN_HOUR;
 		var minutes = seconds/SECONDS_IN_MINUTE>>0;
 		seconds -= minutes*SECONDS_IN_MINUTE;
-		//var result = seconds + "s";
 		var result = minutes + " min";
 		if (hours>0) result = hours + " h " + result;
 		if (days>0) result = days + " d " + result;
@@ -319,7 +321,6 @@ $(document).ready(function(){
 	    var url = "https://api.digitransit.fi/routing/v1/routers/hsl/index/graphql";
 	    var qs = JSON.stringify({
 		    query: queryString
-		    //variables: {}
 		});
 	
 	    var jqxhr= $.ajax({

@@ -25,15 +25,12 @@ $(document).ready(function(){
 	var dataRefreshInterval = SECONDS_IN_MINUTE*1000;
 	var busCodes = [701,702,704];
 	var edges = [];
-	
-	setTimeout(refresh,0);
-	/*
-	if (navigator.geolocation) {
-		refresh();
-	}
-	*/
-	
-	//else showResult("Browser geolocation not available");
+
+	function refreshData () {
+      if (map===undefined) setTimeout(refreshData,1);
+      else refresh();
+  }
+	setTimeout(refreshData,0);
     
 	function refresh() {
 		document.getElementById("spinner").style.visibility="visible";
@@ -75,8 +72,6 @@ $(document).ready(function(){
 	function geoSuccess(location){
 		if (edges.length>0) clearStopMarkers();
 		
-		//var lat = location.coords.latitude;
-		//var lon = location.coords.longitude;
 		var lat = 60.221873; // Test location
 		var lon = 24.941422;
 		map.setCenter({lat: lat, lng: lon}); 
@@ -235,8 +230,6 @@ $(document).ready(function(){
 			
 		}
 		
-		// map.setCenter(userLocationMarker.getPosition()); 
-		
 		function addRow(time, stopName, distance, shortName, longName) {
 			var tr = document.createElement("tr");
 			addCell(time,tr);
@@ -301,11 +294,9 @@ $(document).ready(function(){
 		seconds -= hours*SECONDS_IN_HOUR;
 		var minutes = seconds/SECONDS_IN_MINUTE>>0;
 		seconds -= minutes*SECONDS_IN_MINUTE;
-		//var result = seconds + "s";
 		var result = minutes + " min";
 		if (hours>0) result = hours + " h " + result;
-		  if (days>0) result = days + " d " + result;
-      console.log(result);
+		if (days>0) result = days + " d " + result;
 		return result;
 	}
     
@@ -327,7 +318,6 @@ $(document).ready(function(){
 	    var url = "https://api.digitransit.fi/routing/v1/routers/hsl/index/graphql";
 	    var qs = JSON.stringify({
 		    query: queryString
-		    //variables: {}
 		});
 	
 	    var jqxhr= $.ajax({
