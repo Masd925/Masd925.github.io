@@ -291,6 +291,7 @@ $(document).ready(function(){
 	
 	function timeShown(seconds) {
     if (seconds<0) seconds+=SECONDS_IN_HOUR;
+    seconds+=120;
 		var days = seconds/SECONDS_IN_DAY>>0;
 		seconds -= days*SECONDS_IN_DAY;
 		var hours = seconds/SECONDS_IN_HOUR>>0;
